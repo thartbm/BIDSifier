@@ -4,16 +4,16 @@ This should have one usable function: `BIDSify()`, that can be pointed at the `d
 
 ## BIDS
 
-Brain Imaging Data Structure is essentially a very strict folder hierarchy and naming scheme, where all data is either in json (metadata) or tsv or csv (behavioral data) files. There may also be binary data files (in our case with eye-tracking data), but we will not have those for now. The metadata files (.json format) seem to always have the same name as the file they explain.
+Brain Imaging Data Structure is essentially a very strict folder hierarchy and naming scheme, where all data is either in `.json` (metadata) or `.tsv` (tabular behavioral data) files. There may also be binary data files which we will not have, or for very large tabular files, such as eye-tracking, compressed `.tsv.gz` files are allowed. The metadata files (.json format) seem to always have the same name as the file they explain.
 
 Within the BIDS folder for a project, there is at least 1 files, and potentially a lot of sub directories. We need this file:
 
-- `participants.csv`, and possibly:
-- `participants.json` to explain the contents of the other files
+- `participants.tsv`, and possibly:
+- `participants.json` to explain the contents participants.csv
 
 There may also be json files explaining the content of the files found in the subdirectories.
 
-It seems that usually all sub-directory covers all data from a single participant. These are to be named `sub-<identifier>` where <identifier> is the unique identifier of that participant. There can be other sub-directories with optional data. We could for example generate `derivate` files that have all behavioral responses from all participants on each of the tasks.
+It seems that usually all sub-directory covers all data from a single participant. These are to be named `sub-<identifier>` where <identifier> is the unique identifier of that participant. There can be other sub-directories with optional data. We could for example generate `derivatives` files that have all behavioral responses from all participants on each of the tasks. Or fits to some function.
 
 It seems that within each participant's subdirectory, there is another directory for each type of data. In our case that is all behavioral, and should be in a folder called `beh`.
 
@@ -36,4 +36,15 @@ I'm not sure how the two calibration files should get in there: color calibratio
 - "sub-<ID>_task-<task>_calib-<type>.csv"
 
 This means that for each task, there would be 4 files: 1) color calibration, 2) blind spot mapping and the behavioral responses for 3) the left hemifield and 4) the right hemifield.
+
+## TSV files within BIDS
+
+Column names: lower case, with underscores, separated by tabs
+
+UTF-8 encoding
+
+Numbers use periods for fractions and possible e or E for scientific notation
+
+
+
 
